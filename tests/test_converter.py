@@ -51,7 +51,7 @@ class TestIPYNBtoTXT:
             result = convert_ipynb_to_txt(ipynb_path, "dummy.txt")
             
             # Check that the result contains expected content
-            assert "# test_notebook.ipynb" in result
+            assert f"# {Path(ipynb_path).name}" in result
             assert "```markdown" in result
             assert "# Test Notebook" in result
             assert "```python" in result

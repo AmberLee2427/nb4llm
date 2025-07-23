@@ -63,7 +63,7 @@ class TestCLI:
             # Check the output file
             with open(txt_path, 'r') as f:
                 content = f.read()
-                assert "# test_notebook.ipynb" in content
+                assert f"# {Path(ipynb_path).name}" in content
                 assert "```markdown" in content
                 assert "```python" in content
                 
