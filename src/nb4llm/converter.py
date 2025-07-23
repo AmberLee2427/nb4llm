@@ -9,19 +9,24 @@ import nbformat
 # How many back ticks do I need?!
 def get_fence(cell_source: str, min_length: int = 3) -> str:
     """
-    Get the fence for a cell source. This helps ensure that the fence is not too short.
+    Get the fence for a cell source. Ensures the fence is longer than any sequence of backticks in the cell.
 
-    Inputs:
+    Parameters
+    ----------
+    cell_source : str
+        The source code or markdown of a cell.
+    min_length : int, optional
+        The minimum length of the fence (default: 3).
+
+    Returns
     -------
-    cell_source: str
-        The source code of a cell.
-    min_length: int
-        The minimum length of the fence.
+    str
+        The fence string (e.g., '```' or '````').
 
-    Returns:
+    Examples
     --------
-    fence: str
-        The fence for the cell source.
+    >>> get_fence('Here is some code: ```python\nprint(1)\n```')
+    '````'
     """
     matches = re.findall(r"`+", cell_source)
     max_len = max([len(m) for m in matches], default=0)
@@ -32,17 +37,38 @@ def get_fence(cell_source: str, min_length: int = 3) -> str:
 # convert .ipynb to .txt
 def convert_ipynb_to_txt(ipynb_path: str, txt_path: str) -> None:
     """
-    Convert a Jupyter notebook (.ipynb) to a text file (.txt).
+    Convert a Jupyter notebook (.ipynb) to a readable text file (.txt).
 
-    This function reads a Jupyter notebook file and converts its content into a text format.
-    It handles both markdown and code cells, converting them to Markdown and Python code blocks, respectively.
+    This function reads a Jupyter notebook file and writes its content into a text format.
+    Markdown and code cells are converted to fenced blocks, preserving code cell language.
 
-    Inputs:
+    Parameters
+    ----------
+    ipynb_path : str
+        Path to the Jupyter notebook file.
+    txt_path : str
+        Path to the output text file.
+
+    Returns
     -------
-    ipynb_path: str
-        The path to the Jupyter notebook file.
-    txt_path: str
-        The path to the output text file.
+    None
+
+    Examples
+    --------
+    >>> convert_ipynb_to_txt('notebook.ipynb', 'notebook.txt')
+    # notebook.txt will contain:
+    #   # notebook.ipynb
+    #   ```markdown
+    #   Some markdown
+    #   ```
+    #   ```python
+    #   print('hello')
+    #   ```
+
+    CLI Example
+    -----------
+    $ nb4llm notebook.ipynb
+    # Output: notebook.txt
     """
     nb = nbformat.read(ipynb_path, as_version=4)
     out_lines = []
@@ -67,7 +93,6 @@ def convert_ipynb_to_txt(ipynb_path: str, txt_path: str) -> None:
             out_lines.append(f"{fence}\n")
     with open(txt_path, "w") as f:
         f.write("\n".join(out_lines))
-    # No return
 
 
 # Usage
@@ -80,17 +105,28 @@ def convert_ipynb_to_txt(ipynb_path: str, txt_path: str) -> None:
 # convert .txt to .ipynb
 def convert_txt_to_ipynb(txt_path: str, ipynb_path: str) -> None:
     """
-    Convert a text file (.txt) back to a Jupyter notebook (.ipynb).
+    Convert a text file (.txt) in nb4llm format back to a Jupyter notebook (.ipynb).
 
-    This function reads a text file in the format produced by convert_ipynb_to_txt
-    and converts it back into a Jupyter notebook format.
+    Parameters
+    ----------
+    txt_path : str
+        Path to the input text file.
+    ipynb_path : str
+        Path to the output Jupyter notebook file.
 
-    Inputs:
+    Returns
     -------
-    txt_path: str
-        The path to the input text file.
-    ipynb_path: str
-        The path to the output Jupyter notebook file.
+    None
+
+    Examples
+    --------
+    >>> convert_txt_to_ipynb('notebook.txt', 'notebook.ipynb')
+    # notebook.ipynb will be created from the text blocks in notebook.txt
+
+    CLI Example
+    -----------
+    $ nb4llm --reverse notebook.txt
+    # Output: notebook.ipynb
     """
     import re
 

@@ -41,6 +41,11 @@ jobs:
         sed -i "s/version = \".*\"/version = \"${{ steps.version.outputs.version }}\"/" pyproject.toml
         echo "Updated pyproject.toml version to ${{ steps.version.outputs.version }}"
     
+    - name: Update version in conf.py
+      run: |
+        sed -i "s/^release = .*/release = '${{ steps.version.outputs.version }}'/" docs/source/conf.py
+        echo "Updated docs/source/conf.py release to ${{ steps.version.outputs.version }}"
+    
     - name: Build package
       run: python -m build
     
