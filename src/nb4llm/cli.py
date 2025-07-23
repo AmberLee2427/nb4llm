@@ -10,7 +10,7 @@ from pathlib import Path
 from .converter import convert_ipynb_to_txt, convert_txt_to_ipynb
 
 
-def main():
+def main() -> None:
     parser = argparse.ArgumentParser(
         description="Convert Jupyter notebooks to/from text format for LLM processing",
         formatter_class=argparse.RawDescriptionHelpFormatter,
