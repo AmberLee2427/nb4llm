@@ -36,7 +36,13 @@ def sample_notebook():
                 "source": "Here's a code example:\n\n```python\ndef hello():\n    return 'world'\n```",
             },
         ],
-        "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}},
+        "metadata": {
+            "kernelspec": {
+                "display_name": "Python 3",
+                "language": "python",
+                "name": "python3",
+            }
+        },
         "nbformat": 4,
         "nbformat_minor": 4,
     }

@@ -111,7 +111,11 @@ def convert_txt_to_ipynb(txt_path: str, ipynb_path: str) -> None:
     display_name = "Python 3"
 
     nb.metadata = {
-        "kernelspec": {"display_name": display_name, "language": detected_language, "name": kernel_name},
+        "kernelspec": {
+            "display_name": display_name,
+            "language": detected_language,
+            "name": kernel_name,
+        },
         "language_info": {
             "codemirror_mode": {"name": "ipython", "version": 3},
             "file_extension": ".py",

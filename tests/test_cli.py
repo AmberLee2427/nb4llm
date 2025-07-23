@@ -10,7 +10,11 @@ import pytest
 class TestCLI:
     def test_help(self):
         """Test that help is displayed correctly"""
-        result = subprocess.run([sys.executable, "-m", "nb4llm.cli", "--help"], capture_output=True, text=True)
+        result = subprocess.run(
+            [sys.executable, "-m", "nb4llm.cli", "--help"],
+            capture_output=True,
+            text=True,
+        )
         assert result.returncode == 0
         assert "Convert Jupyter notebooks" in result.stdout
         assert "Examples:" in result.stdout
@@ -18,7 +22,9 @@ class TestCLI:
     def test_missing_input_file(self):
         """Test error handling for missing input file"""
         result = subprocess.run(
-            [sys.executable, "-m", "nb4llm.cli", "nonexistent.ipynb"], capture_output=True, text=True
+            [sys.executable, "-m", "nb4llm.cli", "nonexistent.ipynb"],
+            capture_output=True,
+            text=True,
         )
         assert result.returncode == 1
         assert "does not exist" in result.stderr
@@ -29,7 +35,12 @@ class TestCLI:
         notebook_content = {
             "cells": [
                 {"cell_type": "markdown", "metadata": {}, "source": "# Test"},
-                {"cell_type": "code", "metadata": {}, "outputs": [], "source": "print('test')"},
+                {
+                    "cell_type": "code",
+                    "metadata": {},
+                    "outputs": [],
+                    "source": "print('test')",
+                },
             ],
             "metadata": {},
             "nbformat": 4,
@@ -47,7 +58,9 @@ class TestCLI:
 
         try:
             result = subprocess.run(
-                [sys.executable, "-m", "nb4llm.cli", ipynb_path, txt_path], capture_output=True, text=True
+                [sys.executable, "-m", "nb4llm.cli", ipynb_path, txt_path],
+                capture_output=True,
+                text=True,
             )
 
             assert result.returncode == 0
@@ -86,7 +99,9 @@ print('test')
 
         try:
             result = subprocess.run(
-                [sys.executable, "-m", "nb4llm.cli", "--reverse", txt_path, ipynb_path], capture_output=True, text=True
+                [sys.executable, "-m", "nb4llm.cli", "--reverse", txt_path, ipynb_path],
+                capture_output=True,
+                text=True,
             )
 
             assert result.returncode == 0
@@ -121,7 +136,11 @@ print('test')
             ipynb_path = f.name
 
         try:
-            result = subprocess.run([sys.executable, "-m", "nb4llm.cli", ipynb_path], capture_output=True, text=True)
+            result = subprocess.run(
+                [sys.executable, "-m", "nb4llm.cli", ipynb_path],
+                capture_output=True,
+                text=True,
+            )
 
             assert result.returncode == 0
             assert "Successfully converted" in result.stdout
@@ -155,7 +174,9 @@ print('test')
 
         try:
             result = subprocess.run(
-                [sys.executable, "-m", "nb4llm.cli", "-v", ipynb_path, txt_path], capture_output=True, text=True
+                [sys.executable, "-m", "nb4llm.cli", "-v", ipynb_path, txt_path],
+                capture_output=True,
+                text=True,
             )
 
             assert result.returncode == 0
@@ -178,7 +199,9 @@ print('test')
 
         try:
             result = subprocess.run(
-                [sys.executable, "-m", "nb4llm.cli", txt_path, output_path], capture_output=True, text=True
+                [sys.executable, "-m", "nb4llm.cli", txt_path, output_path],
+                capture_output=True,
+                text=True,
             )
 
             assert result.returncode == 1  # Should fail because it's not a valid notebook

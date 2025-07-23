@@ -25,10 +25,17 @@ Examples:
 
     parser.add_argument("input_file", help="Input file (.ipynb or .txt)")
 
-    parser.add_argument("output_file", nargs="?", help="Output file (optional, auto-generated if not provided)")
+    parser.add_argument(
+        "output_file",
+        nargs="?",
+        help="Output file (optional, auto-generated if not provided)",
+    )
 
     parser.add_argument(
-        "--reverse", "-r", action="store_true", help="Convert from .txt back to .ipynb (default is .ipynb to .txt)"
+        "--reverse",
+        "-r",
+        action="store_true",
+        help="Convert from .txt back to .ipynb (default is .ipynb to .txt)",
     )
 
     parser.add_argument("--verbose", "-v", action="store_true", help="Verbose output")
@@ -45,7 +52,10 @@ Examples:
     if args.reverse:
         # txt -> ipynb
         if input_path.suffix.lower() != ".txt":
-            print(f"Warning: Input file '{input_path}' doesn't have .txt extension", file=sys.stderr)
+            print(
+                f"Warning: Input file '{input_path}' doesn't have .txt extension",
+                file=sys.stderr,
+            )
 
         if args.output_file:
             output_path = Path(args.output_file)
@@ -65,7 +75,10 @@ Examples:
     else:
         # ipynb -> txt
         if input_path.suffix.lower() != ".ipynb":
-            print(f"Warning: Input file '{input_path}' doesn't have .ipynb extension", file=sys.stderr)
+            print(
+                f"Warning: Input file '{input_path}' doesn't have .ipynb extension",
+                file=sys.stderr,
+            )
 
         if args.output_file:
             output_path = Path(args.output_file)
