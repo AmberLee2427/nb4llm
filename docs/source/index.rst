@@ -3,12 +3,6 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-
-
-
-
-
-
 nb4llm: Notebook ↔ LLM Text Converter
 =======================================
 
@@ -23,9 +17,6 @@ Features
 - Handles nested code fences and markdown
 - CLI and Python API
 - Numpydoc-style docstrings for easy API browsing
-
-Welcome to nb4llm's documentation!
-==================================
 
 .. toctree::
    :maxdepth: 2
