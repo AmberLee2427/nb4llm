@@ -89,9 +89,7 @@ Examples:
             print(f"Converting {input_path} -> {output_path}")
 
         try:
-            result = convert_ipynb_to_txt(str(input_path), str(output_path))
-            with open(output_path, "w") as f:
-                f.write(result)
+            convert_ipynb_to_txt(str(input_path), str(output_path))
             print(f"Successfully converted to {output_path}")
         except Exception as e:
             print(f"Error converting file: {e}", file=sys.stderr)
