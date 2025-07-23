@@ -36,12 +36,12 @@ Quick Start
    # Convert text back to a notebook
    nb4llm --reverse my_notebook.txt
 
-See the :doc:`cli_tutorial` for more details and examples.
+See the :doc:source:`cli_tutorial` for more details and examples.
 
 API Reference
 -------------
 
-See :doc:`api` for the Python API documentation.
+See :doc:source:`api` for the Python API documentation.
 
 Indices and tables
 ==================
