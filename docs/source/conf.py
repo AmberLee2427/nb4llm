@@ -1,4 +1,8 @@
 # Configuration file for the Sphinx documentation builder.
+import os
+import sys
+
+sys.path.insert(0, os.path.abspath("../../src"))
 
 project = "nb4llm"
 copyright = "2025, Amber Malpas (AmberLee2427)"
