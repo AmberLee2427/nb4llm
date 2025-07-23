@@ -98,6 +98,10 @@ def convert_txt_to_ipynb(txt_path: str, ipynb_path: str) -> None:
     # Split content into lines
     lines = content.split("\n")
 
+    # Skip notebook name header if present
+    if lines and lines[0].startswith("# "):
+        lines = lines[1:]
+
     # Create notebook structure
     nb = nbformat.v4.new_notebook()
 
