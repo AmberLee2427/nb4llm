@@ -1,8 +1,9 @@
-import pytest
-import tempfile
-import os
 import json
+import os
+import tempfile
 from pathlib import Path
+
+import pytest
 
 
 @pytest.fixture
@@ -20,30 +21,24 @@ def sample_notebook():
             {
                 "cell_type": "markdown",
                 "metadata": {},
-                "source": "# Sample Notebook\n\nThis is a sample notebook for testing."
+                "source": "# Sample Notebook\n\nThis is a sample notebook for testing.",
             },
             {
                 "cell_type": "code",
                 "execution_count": 1,
                 "metadata": {},
                 "outputs": [],
-                "source": "import numpy as np\n\nx = np.array([1, 2, 3])\nprint(x)"
+                "source": "import numpy as np\n\nx = np.array([1, 2, 3])\nprint(x)",
             },
             {
                 "cell_type": "markdown",
                 "metadata": {},
-                "source": "Here's a code example:\n\n```python\ndef hello():\n    return 'world'\n```"
-            }
+                "source": "Here's a code example:\n\n```python\ndef hello():\n    return 'world'\n```",
+            },
         ],
-        "metadata": {
-            "kernelspec": {
-                "display_name": "Python 3",
-                "language": "python",
-                "name": "python3"
-            }
-        },
+        "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"}},
         "nbformat": 4,
-        "nbformat_minor": 4
+        "nbformat_minor": 4,
     }
 
 
@@ -51,7 +46,7 @@ def sample_notebook():
 def sample_notebook_file(sample_notebook, temp_dir):
     """Create a sample notebook file"""
     notebook_path = temp_dir / "sample.ipynb"
-    with open(notebook_path, 'w') as f:
+    with open(notebook_path, "w") as f:
         json.dump(sample_notebook, f)
     return notebook_path
 
@@ -82,16 +77,16 @@ def hello():
     return 'world'
 ```
 ```"""
-    
+
     text_path = temp_dir / "sample.txt"
-    with open(text_path, 'w') as f:
+    with open(text_path, "w") as f:
         f.write(text_content)
     return text_path
 
 
 def create_notebook_file(content, path):
     """Helper function to create a notebook file"""
-    with open(path, 'w') as f:
+    with open(path, "w") as f:
         json.dump(content, f)
 
 
@@ -99,4 +94,4 @@ def cleanup_files(*paths):
     """Helper function to clean up test files"""
     for path in paths:
         if os.path.exists(path):
-            os.unlink(path) 
+            os.unlink(path)
