@@ -1,8 +1,3 @@
-.. nb4llm documentation master file, created by
-   sphinx-quickstart on Tue Jul 22 23:30:04 2025.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 nb4llm: Notebook ↔ LLM Text Converter
 =======================================
 
@@ -19,7 +14,7 @@ Features
 - Numpydoc-style docstrings for easy API browsing
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth=2
    :caption: Contents:
 
    cli_tutorial.md
@@ -36,15 +31,15 @@ Quick Start
    # Convert text back to a notebook
    nb4llm --reverse my_notebook.txt
 
-See the :doc:source:`cli_tutorial` for more details and examples.
+See the :doc:`cli_tutorial` for more details and examples.
 
 API Reference
 -------------
 
-See :doc:source:`api` for the Python API documentation.
+See :doc:`api` for the Python API documentation.
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`
