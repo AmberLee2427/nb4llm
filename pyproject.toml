@@ -49,8 +49,12 @@ Issues = "https://github.com/yourusername/nb4llm/issues"
 [tool.setuptools.packages.find]
 where = ["src"]
 
+[tool.isort]
+profile = "black"
+line_length = 120
+
 [tool.black]
-line-length = 88
+line-length = 120 
 target-version = ['py38']
 
 [tool.mypy]
