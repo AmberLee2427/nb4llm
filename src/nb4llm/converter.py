@@ -65,7 +65,9 @@ def convert_ipynb_to_txt(ipynb_path: str, txt_path: str) -> None:
             out_lines.append(f"{fence}{kernel_language}")
             out_lines.append(cell.source)
             out_lines.append(f"{fence}\n")
-    return "\n".join(out_lines)
+    with open(txt_path, "w") as f:
+        f.write("\n".join(out_lines))
+    # No return
 
 
 # Usage

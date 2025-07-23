@@ -56,8 +56,9 @@ class TestIPYNBtoTXT:
             ipynb_path = f.name
 
         try:
-            result = convert_ipynb_to_txt(ipynb_path, "dummy.txt")
-
+            convert_ipynb_to_txt(ipynb_path, "dummy.txt")
+            with open("dummy.txt", "r") as outf:
+                result = outf.read()
             # Check that the result contains expected content
             assert f"# {Path(ipynb_path).name}" in result
             assert "```markdown" in result
@@ -97,8 +98,9 @@ class TestIPYNBtoTXT:
             ipynb_path = f.name
 
         try:
-            result = convert_ipynb_to_txt(ipynb_path, "dummy.txt")
-
+            convert_ipynb_to_txt(ipynb_path, "dummy.txt")
+            with open("dummy.txt", "r") as outf:
+                result = outf.read()
             # Check that R language is used in the fence
             assert "```r" in result
             assert "x <- c(1, 2, 3)" in result
@@ -129,8 +131,9 @@ class TestIPYNBtoTXT:
             ipynb_path = f.name
 
         try:
-            result = convert_ipynb_to_txt(ipynb_path, "dummy.txt")
-
+            convert_ipynb_to_txt(ipynb_path, "dummy.txt")
+            with open("dummy.txt", "r") as outf:
+                result = outf.read()
             # Should use longer fence for the outer block
             assert "````markdown" in result
             assert "```python" in result  # Inner code block
@@ -304,9 +307,7 @@ class TestRoundTrip:
 
         try:
             # Convert ipynb -> txt
-            result = convert_ipynb_to_txt(original_ipynb, txt_path)
-            with open(txt_path, "w") as f:
-                f.write(result)
+            convert_ipynb_to_txt(original_ipynb, txt_path)
 
             # Convert txt -> ipynb
             convert_txt_to_ipynb(txt_path, roundtrip_ipynb)
